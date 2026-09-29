@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import time
+
+plt.ion()
 
 file = 'output_00'
 #file = file + '001'+'.jpg'
-
-fig, axes = plt.subplots(1, 549, figsize=(15, 5))
 
 for i in range(1,550):
   if i < 10:
@@ -14,13 +15,18 @@ for i in range(1,550):
   else:
     filen = file + str(i) +'.jpg'
 
-  img = plt.imread(filen)
+  print(filen)
 
-  axes[i].imshow(img)
-  axes[i].set_title(str(i)) # Título opcional
-  axes[i].axis('off')                     # Ocultar los ejes de coordenadas
-  plt.tight_layout()
-  plt.show()
+  img = plt.imread('./imagenes/'+filen)
+
+  plt.imshow(img)
+#  plt.axis('off') # Ocultar los ejes
+#  plt.show()
+  plt.show(block=False) # Mostrar sin bloquear el código    
+  print('hola')
+  time.sleep(2) # Pausa en segundos
+
+  plt.close() # Cerrar la imagen actual para la siguiente
 
 
 
