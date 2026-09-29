@@ -1,0 +1,24 @@
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+file = 'output_00'
+file = file + '357'+'.jpg'
+
+# 1. Cargar la imagen desde tu ruta local
+
+img = mpimg.imread(file)
+
+# 2. Desplegar la imagen en pantalla
+
+plt.imshow(img)
+
+# 3. Opcional: Ocultar los ejes de coordenadas (X e Y)
+
+#plt.axis('off')
+
+# 4. Mostrar la ventana con el gráfico
+
+plt.show()
+
+
+
