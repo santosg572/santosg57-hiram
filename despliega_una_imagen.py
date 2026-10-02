@@ -1,38 +1,43 @@
+import cv2
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-def despliega_img(file=''):
-  img = mpimg.imread(file)
-  plt.ion()
-  plt.imshow(img)
-  plt.title(ns)
-  #plt.axis("off")  # Oculta los ejes
-  plt.ioff()
-#  plt.show()
+import funciones_imagenes as fun
+
+def encuentra_diferencias_imagenes(img1=0, img2=0):
+  diferencia = cv2.absdiff(img1, img2)
+
+  # 2. Aplicar un umbral (Threshold) para binarizar los cambios importantes
+
+  _, umbral = cv2.threshold(diferencia, 30, 255, cv2.THRESH_BINARY)
+
+  # 3. Encontrar los contornos de las zonas que cambiaron
+
+  contornos, _ = cv2.findContours(umbral, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+  # 4. Dibujar rectángulos sobre la imagen original donde se detectó cambio
+
+  img_resultado = img1 #cv2.imread('imagen2.jpg')
+
+  for c in contornos:
+      if cv2.contourArea(c) > 500: # Filtrar ruido pequeño
+          x, y, w, h = cv2.boundingRect(c)
+          cv2.rectangle(img_resultado, (x, y), (x + w, y + h), (0, 0, 255), 2)
+  return img_resultado
 
 
-print('549 imagenes')
 
-min = 15
-seg = 34
+print(dir(fun))
 
-print('tiempo inicial: ' + str(seg))
+img1 = fun.LeeIMG_corta(13)
 
-while 1:
-  print('en que tiempo deseas ver la imagen [0 - para terminar] :')
+file = 'cambios_detectados_'
 
-  n = int(input())
-  n = n+1
-  if n > 0:
-    if n < 10:
-      ns = '00' + str(n)
-    elif n < 100:
-      ns = '0' + str(n)
-    else:
-      ns = str(n)
+for i in range(13, 25):
+  img2 = fun.LeeIMG_corta(14)
+  img_resul = encuentra_diferencias_imagenes(img1, img2)
+  cv2.imwrite(file+str(i)+'.jpg', img_resul)
 
-    file = "./imagenes/"+ "output_00" + ns + '.jpg'
- 
-    despliega_img(file)
-  else:
-    break
+
+
+

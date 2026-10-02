@@ -1,0 +1,36 @@
+import numpy as np
+
+import funciones_imagenes as fun
+
+print(dir(fun))
+
+imgs = list()
+
+for i in range(13,24):
+  img = fun.LeeIMG_nombre('cambios_detectados_'+ str(i) + '.jpg')
+  imgs.append(img)
+
+ss = imgs[0].shape
+
+imgn = np.zeros((3*ss[0], 4*ss[1]))
+
+imgn[0:ss[0], 0:ss[1]] = imgs[0]
+imgn[0:ss[0], ss[1]:2*ss[1]] = imgs[1]
+imgn[0:ss[0], 2*ss[1]:3*ss[1]] = imgs[2]
+imgn[0:ss[0], 3*ss[1]:4*ss[1]] = imgs[3]
+
+imgn[ss[0]:2*ss[0], 0:ss[1]] = imgs[4]
+imgn[ss[0]:2*ss[0], ss[1]:2*ss[1]] = imgs[5]
+imgn[ss[0]:2*ss[0], 2*ss[1]:3*ss[1]] = imgs[6]
+imgn[ss[0]:2*ss[0], 3*ss[1]:4*ss[1]] = imgs[7]
+
+imgn[2*ss[0]:3*ss[0], 0:ss[1]] = imgs[4]
+imgn[2*ss[0]:3*ss[0], ss[1]:2*ss[1]] = imgs[5]
+imgn[2*ss[0]:3*ss[0], 2*ss[1]:3*ss[1]] = imgs[6]
+imgn[2*ss[0]:3*ss[0], 3*ss[1]:4*ss[1]] = imgs[7]
+
+
+fun.despliega_img(imgn)
+
+
+
