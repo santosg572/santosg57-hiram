@@ -6,7 +6,8 @@ print(dir(fun))
 
 imgs = list()
 
-for i in range(25,37):
+for i in range(25,38o
+):
   img = fun.LeeIMG_nombre('cambios_detectados_'+ str(i) + '.jpg')
   imgs.append(img)
 

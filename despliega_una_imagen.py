@@ -33,10 +33,15 @@ img1 = fun.LeeIMG_corta(13)
 
 file = 'cambios_detectados_'
 
-for i in range(13, 25):
-  img2 = fun.LeeIMG_corta(14)
+# 14,26
+# 26,38
+
+for i in range(24, 38):
+  img2 = fun.LeeIMG_corta(i)
   img_resul = encuentra_diferencias_imagenes(img1, img2)
-  cv2.imwrite(file+str(i)+'.jpg', img_resul)
+  cv2.imwrite(file+str(i-1)+'.jpg', img_resul)
+  img1 = img2.copy()
+
 
 
 
