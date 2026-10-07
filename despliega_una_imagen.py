@@ -29,6 +29,26 @@ def encuentra_diferencias_imagenes(img1=0, img2=0):
 
 print(dir(fun))
 
+for i in range(1,507):
+  if i < 10:
+    num = '00'+str(i)
+  elif i < 100:
+    num = '0'+str(i)
+  else:
+    num = str(i)
+  file = 'output_0'
+  file='temporal/' + file + num + '.jpg'
+
+  fileon = 'cortadas_'
+  fileon = 'temporal_cortadas/' + fileon + num + '.jpg'
+
+  img = fun.LeeIMG_nombre(file)
+  img = fun.ConvierteIMG_una(img)
+  img = fun.corta_imagen(img, 50, 780, 500, 1750)
+  cv2.imwrite(fileon, img)
+  #fun.despliega_img(img)
+
+'''
 img1 = fun.LeeIMG_corta(13)
 
 file = 'cambios_detectados_'
@@ -42,7 +62,7 @@ for i in range(24, 38):
   cv2.imwrite(file+str(i-1)+'.jpg', img_resul)
   img1 = img2.copy()
 
-
+'''
 
 
 

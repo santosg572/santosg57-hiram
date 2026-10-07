@@ -2,9 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-def corta_imagen(i1=0, i2=0, j1=0, j2=0, img=0):
+def corta_imagen(img=0, i1=0, i2=0, j1=0, j2=0):
   imgn = img[i1:i2, j1:j2]
   return imgn
+
+def ConvierteIMG_una(img=0):
+  imgn = img[:, :, 0]
+  return imgn   
 
 def despliega_img(imgB=''):
 #  plt.ion()
