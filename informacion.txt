@@ -1,0 +1,67 @@
+(base) iMac-de-Fernando:santosg57-hiram santosg$ ./saca_informacion.sh > informacion.txt
+ffprobe version 4.2.2 Copyright (c) 2007-2019 the FFmpeg developers
+  built with clang version 4.0.1 (tags/RELEASE_401/final)
+  configuration: 
+--prefix=/opt/concourse/worker/volumes/live/d5b9ea1c-8223-4ff6-7416-83e6b4cd6874/volume/ffmpeg_1587154914508/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol 
+--cc=x86_64-apple-darwin13.4.0-clang --disable-doc --enable-avresample --enable-gmp --enable-hardcoded-tables 
+--enable-libfreetype --enable-libvpx --enable-pthreads --enable-libopus --enable-postproc --enable-pic --enable-pthreads 
+--enable-shared --enable-static --enable-version3 --enable-zlib --enable-libmp3lame --disable-nonfree --enable-gpl 
+--enable-gnutls --disable-openssl --enable-libopenh264 --enable-libx264
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '../Hiram_datos/IMG_1952.MOV':
+  Metadata:
+    major_brand     : qt  
+    minor_version   : 0
+    compatible_brands: qt  
+    creation_time   : 2026-10-04T20:36:24.000000Z
+    com.apple.quicktime.full-frame-rate-playback-intent: 0
+    com.apple.quicktime.make: Apple
+    com.apple.quicktime.model: iPhone 15 Pro Max
+    com.apple.quicktime.software: 26.6.1
+    com.apple.quicktime.creationdate: 2026-10-04T14:35:04-0600
+  Duration: 00:00:16.91, start: 0.000000, bitrate: 13305 kb/s
+    Stream #0:0(und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 206 kb/s (default)
+    Metadata:
+      creation_time   : 2026-10-04T20:36:24.000000Z
+      handler_name    : Core Media Audio
+    Stream #0:1(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1920x1080, 13051 kb/s, 29.99 fps, 29.97 tbr, 
+600 tbn, 1200 tbc (default)
+    Metadata:
+      creation_time   : 2026-10-04T20:36:24.000000Z
+      handler_name    : Core Media Video
+      encoder         : H.264
+    Stream #0:2(und): Data: none (mebx / 0x7862656D), 0 kb/s (default)
+    Metadata:
+      creation_time   : 2026-10-04T20:36:24.000000Z
+      handler_name    : Core Media Metadata
+    Stream #0:3(und): Data: none (mebx / 0x7862656D), 0 kb/s (default)
+    Metadata:
+      creation_time   : 2026-10-04T20:36:24.000000Z
+      handler_name    : Core Media Metadata
+    Stream #0:4(und): Data: none (mebx / 0x7862656D), 34 kb/s (default)
+    Metadata:
+      creation_time   : 2026-10-04T20:36:24.000000Z
+      handler_name    : Core Media Metadata
+    Stream #0:5(und): Data: none (mebx / 0x7862656D), 2 kb/s (default)
+    Metadata:
+      creation_time   : 2026-10-04T20:36:24.000000Z
+      handler_name    : Core Media Metadata
+    Stream #0:6(und): Data: none (mebx / 0x7862656D), 0 kb/s (default)
+    Metadata:
+      creation_time   : 2026-10-04T20:36:24.000000Z
+      handler_name    : Core Media Metadata
+Unsupported codec with id 0 for input stream 2
+Unsupported codec with id 0 for input stream 3
+Unsupported codec with id 0 for input stream 4
+Unsupported codec with id 0 for input stream 5
+Unsupported codec with id 0 for input stream 6
+(base) iMac-de-Fernando:santosg57-hiram santosg$ 
+
