@@ -1,4 +1,3 @@
-import cv2
 import numpy as np
 import pylab as pl
 
@@ -6,7 +5,7 @@ pat = '../Hiram_datos/IMG_1952'
 
 file = 'fotograma_0'
 
-ni = 507
+ni = 473
 
 img = None
 
@@ -34,8 +33,6 @@ for i in range(390,ni):
 
     if img is None:
         img = pl.imshow(im)
-        imgn = im[i1:i2, j1:j2,0]
-        cv2.imwrite('ddddd' + '.jpg', imgn)
     else:
         img.set_data(im)
     pl.pause(.1)
