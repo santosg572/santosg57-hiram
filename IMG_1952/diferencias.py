@@ -3,8 +3,8 @@ from skimage.metrics import structural_similarity as ssim
 
 # 1. Cargar las dos imágenes en escala de grises
 
-pat = '/Users/santosg/Hiram_datos/IMG_1952/'
-prefijo = 'fotograma_0'
+pat = 'temporal/'
+prefijo = 'fotograma_0O_'
 
 i = 393
 file1 = prefijo+str(i)+'.png'

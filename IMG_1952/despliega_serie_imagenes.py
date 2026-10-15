@@ -21,7 +21,9 @@ for i in range(393,472):
   imgn = img.imread(pat+file)
   imgn = imgn[:,:,0]
   imgn = imgn[200:820,340:1900]
-  ax.imshow(imgn)
+  fileo = prefijo+'O_'+str(i)+'.png'
+  plt.imsave(fileo, imgn)
+  ax.imshow(imgn, cmap='gray')
   plt.draw()       # Fuerza el redibujado de la figura
   plt.pause(1.0)   # Pausa el script por 1.0 segundos antes de la siguiente imagen
   ax.clear()       # Limpia el eje para evitar sobreponer imágenes
