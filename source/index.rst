@@ -15,5 +15,7 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
+   help/matplotlib_image
+   help/cv2
    programas/programas
 

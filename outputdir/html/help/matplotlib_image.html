@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="sp" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>matplotlib.image &#8212; документација Hiram 01</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=cb95fe6c"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Индекс" href="../genindex.html" />
+    <link rel="search" title="Претрага" href="../search.html" />
+    <link rel="next" title="programas" href="../programas/programas.html" />
+    <link rel="prev" title="Hiram documentation" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="matplotlib-image">
+<h1>matplotlib.image<a class="headerlink" href="#matplotlib-image" title="Link to this heading">¶</a></h1>
+<p>['Affine2D', 'AxesImage', 'BESSEL', 'BICUBIC', 'BILINEAR', 'BLACKMAN', 'Bbox', 'BboxBase', 'BboxImage', 'BboxTransform',
+'BboxTransformTo', 'CATROM', 'FigureCanvasBase', 'FigureImage', 'GAUSSIAN', 'HAMMING', 'HANNING', 'HERMITE',
+'IdentityTransform', 'KAISER', 'LANCZOS', 'MITCHELL', 'NEAREST', 'NonUniformImage', 'PIL', 'Path', 'PcolorImage',
+'QUADRIC', 'SINC', 'SPLINE16', 'SPLINE36', 'TransformedBbox', '_ImageBase', '__builtins__', '__cached__', '__doc__',
+'__file__', '__loader__', '__name__', '__package__', '__spec__', '_api', '_draw_list_compositing_images', '_image',
+'_interpd_', '_log', '_pil_png_to_float_array', '_resample', '_rgb_to_rgba', 'cbook', 'cm', 'composite_images', 'imread',
+'imsave', 'interpolations_names', 'logging', 'martist', 'math', 'mcolors', 'mpl', 'np', 'os', 'pil_to_array', 'resample',
+'thumbnail', 'warnings']</p>
+<p>** &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp; **
+Help on function imread in module matplotlib.image:</p>
+<dl>
+<dt>imread(fname, format=None)</dt><dd><p>Read an image from a file into an array.</p>
+<div class="admonition note">
+<p class="admonition-title">Белешка</p>
+<p>This function exists for historical reasons.  It is recommended to
+use <cite>PIL.Image.open</cite> instead for loading images.</p>
+</div>
+<dl>
+<dt>fname<span class="classifier">str or file-like</span></dt><dd><p>The image file to read: a filename, a URL or a file-like object opened
+in read-binary mode.</p>
+<p>Passing a URL is deprecated.  Please open the URL
+for reading and pass the result to Pillow, e.g. with
+<code class="docutils literal notranslate"><span class="pre">np.array(PIL.Image.open(urllib.request.urlopen(url)))</span></code>.</p>
+</dd>
+<dt>format<span class="classifier">str, optional</span></dt><dd><p>The image file format assumed for reading the data.  The image is
+loaded as a PNG file if <em>format</em> is set to &quot;png&quot;, if <em>fname</em> is a path
+or opened file with a &quot;.png&quot; extension, or if it is a URL.  In all
+other cases, <em>format</em> is ignored and the format is auto-detected by
+<cite>PIL.Image.open</cite>.</p>
+</dd>
+</dl>
+<dl>
+<dt><cite>numpy.array</cite></dt><dd><p>The image data. The returned array has shape</p>
+<ul class="simple">
+<li><p>(M, N) for grayscale images.</p></li>
+<li><p>(M, N, 3) for RGB images.</p></li>
+<li><p>(M, N, 4) for RGBA images.</p></li>
+</ul>
+<p>PNG images are returned as float arrays (0-1).  All other formats are
+returned as int arrays, with a bit depth determined by the file's
+contents.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>None
+** &amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp; **
+Help on function imsave in module matplotlib.image:</p>
+<dl>
+<dt>imsave(fname, arr, vmin=None, vmax=None, cmap=None, format=None, origin=None, dpi=100, <a href="#id1"><span class="problematic" id="id2">*</span></a>, metadata=None, pil_kwargs=None)</dt><dd><p>Colormap and save an array as an image file.</p>
+<p>RGB(A) images are passed through.  Single channel images will be
+colormapped according to <em>cmap</em> and <em>norm</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Белешка</p>
+<p>If you want to save a single channel image as gray scale please use an
+image I/O library (such as pillow, tifffile, or imageio) directly.</p>
+</div>
+<dl>
+<dt>fname<span class="classifier">str or path-like or file-like</span></dt><dd><p>A path or a file-like object to store the image in.
+If <em>format</em> is not set, then the output format is inferred from the
+extension of <em>fname</em>, if any, and from <a href="#id3"><span class="problematic" id="id4">:rc:`savefig.format`</span></a> otherwise.
+If <em>format</em> is set, it determines the output format.</p>
+</dd>
+<dt>arr<span class="classifier">array-like</span></dt><dd><p>The image data. The shape can be one of
+MxN (luminance), MxNx3 (RGB) or MxNx4 (RGBA).</p>
+</dd>
+<dt>vmin, vmax<span class="classifier">float, optional</span></dt><dd><p><em>vmin</em> and <em>vmax</em> set the color scaling for the image by fixing the
+values that map to the colormap color limits. If either <em>vmin</em>
+or <em>vmax</em> is None, that limit is determined from the <em>arr</em>
+min/max value.</p>
+</dd>
+<dt>cmap<span class="classifier">str or <cite>~matplotlib.colors.Colormap</cite>, default: <a href="#id5"><span class="problematic" id="id6">:rc:`image.cmap`</span></a></span></dt><dd><p>A Colormap instance or registered colormap name. The colormap
+maps scalar data to colors. It is ignored for RGB(A) data.</p>
+</dd>
+<dt>format<span class="classifier">str, optional</span></dt><dd><p>The file format, e.g. 'png', 'pdf', 'svg', ...  The behavior when this
+is unset is documented under <em>fname</em>.</p>
+</dd>
+<dt>origin<span class="classifier">{'upper', 'lower'}, default: <a href="#id7"><span class="problematic" id="id8">:rc:`image.origin`</span></a></span></dt><dd><p>Indicates whether the <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> index of the array is in the upper
+left or lower left corner of the Axes.</p>
+</dd>
+<dt>dpi<span class="classifier">float</span></dt><dd><p>The DPI to store in the metadata of the file.  This does not affect the
+resolution of the output image.  Depending on file format, this may be
+rounded to the nearest integer.</p>
+</dd>
+<dt>metadata<span class="classifier">dict, optional</span></dt><dd><p>Metadata in the image file.  The supported keys depend on the output
+format, see the documentation of the respective backends for more
+information.
+Currently only supported for &quot;png&quot;, &quot;pdf&quot;, &quot;ps&quot;, &quot;eps&quot;, and &quot;svg&quot;.</p>
+</dd>
+<dt>pil_kwargs<span class="classifier">dict, optional</span></dt><dd><p>Keyword arguments passed to <cite>PIL.Image.Image.save</cite>.  If the 'pnginfo'
+key is present, it completely overrides <em>metadata</em>, including the
+default 'Software' key.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>None</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Hiram</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигација</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">matplotlib.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programas/programas.html">programas</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="претходна глава">Hiram documentation</a></li>
+      <li>Next: <a href="../programas/programas.html" title="наредна глава">programas</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Брза претрага</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Тражи" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/help/matplotlib_image.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

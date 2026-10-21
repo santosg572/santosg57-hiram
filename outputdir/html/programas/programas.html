@@ -172,15 +172,511 @@
 </pre></div>
 </div>
 <p><strong>despliega_imagenes.py</strong></p>
-<p>despliega_serie_imagenes.py
-despliega_una_imagen.py
-despliega_una_imagen_y_corta.py
-existe_diferencia_01.py
-funciones_imagenes.py
-lee_image_corta_salva.py
-porcentaje_de_similitud.py
-porcentaje_de_similitud_2.py
-programas.rst</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.image</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpimg</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">550</span><span class="p">):</span>
+  <span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;output_00&quot;</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">filen</span> <span class="o">=</span> <span class="n">file</span> <span class="o">+</span> <span class="s2">&quot;00&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="n">filen</span> <span class="o">=</span> <span class="n">file</span> <span class="o">+</span> <span class="s2">&quot;0&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">filen</span> <span class="o">=</span> <span class="n">file</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+  <span class="n">filen</span> <span class="o">=</span> <span class="s2">&quot;./imagenes/&quot;</span><span class="o">+</span> <span class="n">filen</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">filen</span><span class="p">)</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">filen</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>  <span class="c1"># Oculta los ejes</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>despliega_serie_imagenes.py</strong></p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pylab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+
+<span class="n">pat</span> <span class="o">=</span> <span class="s1">&#39;../Hiram_datos/IMG_1952&#39;</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;fotograma_0&#39;</span>
+
+<span class="n">ni</span> <span class="o">=</span> <span class="mi">473</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">i1</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">i2</span> <span class="o">=</span> <span class="mi">840</span>
+<span class="n">j1</span> <span class="o">=</span> <span class="mi">310</span>
+<span class="n">j2</span> <span class="o">=</span> <span class="mi">1900</span>
+
+<span class="n">filo</span> <span class="o">=</span> <span class="s1">&#39;imgo_&#39;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">390</span><span class="p">,</span><span class="n">ni</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+      <span class="n">ss</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+      <span class="n">ss</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">ss</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ff</span> <span class="o">=</span> <span class="n">pat</span><span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">file</span><span class="o">+</span> <span class="n">ss</span> <span class="o">+</span><span class="s1">&#39;.png&#39;</span>
+    <span class="n">im</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">ff</span><span class="p">)</span>
+    <span class="n">im</span><span class="p">[</span><span class="n">i1</span><span class="p">:(</span><span class="n">i1</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="p">:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">im</span><span class="p">[</span><span class="n">i2</span><span class="p">:(</span><span class="n">i2</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="p">:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">im</span><span class="p">[:,</span> <span class="n">j1</span><span class="p">:(</span><span class="n">j1</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">im</span><span class="p">[:,</span> <span class="n">j2</span><span class="p">:(</span><span class="n">j2</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">.1</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>despliega_una_imagen.py</strong></p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.image</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpimg</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">funciones_imagenes</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">fun</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">encuentra_diferencias_imagenes</span><span class="p">(</span><span class="n">img1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">img2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+  <span class="n">diferencia</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">absdiff</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">)</span>
+
+  <span class="c1"># 2. Aplicar un umbral (Threshold) para binarizar los cambios importantes</span>
+
+  <span class="n">_</span><span class="p">,</span> <span class="n">umbral</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">diferencia</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+
+  <span class="c1"># 3. Encontrar los contornos de las zonas que cambiaron</span>
+
+  <span class="n">contornos</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">umbral</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
+
+  <span class="c1"># 4. Dibujar rectángulos sobre la imagen original donde se detectó cambio</span>
+
+  <span class="n">img_resultado</span> <span class="o">=</span> <span class="n">img1</span> <span class="c1">#cv2.imread(&#39;imagen2.jpg&#39;)</span>
+
+  <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">contornos</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">contourArea</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span> <span class="c1"># Filtrar ruido pequeño</span>
+          <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">boundingRect</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+          <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img_resultado</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">img_resultado</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">fun</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">507</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;output_0&#39;</span>
+  <span class="n">file</span><span class="o">=</span><span class="s1">&#39;temporal/&#39;</span> <span class="o">+</span> <span class="n">file</span> <span class="o">+</span> <span class="n">num</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span>
+
+  <span class="n">fileon</span> <span class="o">=</span> <span class="s1">&#39;cortadas_&#39;</span>
+  <span class="n">fileon</span> <span class="o">=</span> <span class="s1">&#39;temporal_cortadas/&#39;</span> <span class="o">+</span> <span class="n">fileon</span> <span class="o">+</span> <span class="n">num</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span>
+
+  <span class="n">img</span> <span class="o">=</span> <span class="n">fun</span><span class="o">.</span><span class="n">LeeIMG_nombre</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">fun</span><span class="o">.</span><span class="n">ConvierteIMG_una</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">fun</span><span class="o">.</span><span class="n">corta_imagen</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">780</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1750</span><span class="p">)</span>
+  <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">fileon</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+  <span class="c1">#fun.despliega_img(img)</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">img1 = fun.LeeIMG_corta(13)</span>
+
+<span class="sd">file = &#39;cambios_detectados_&#39;</span>
+
+<span class="sd"># 14,26</span>
+<span class="sd"># 26,38</span>
+
+<span class="sd">for i in range(24, 38):</span>
+<span class="sd">  img2 = fun.LeeIMG_corta(i)</span>
+<span class="sd">  img_resul = encuentra_diferencias_imagenes(img1, img2)</span>
+<span class="sd">  cv2.imwrite(file+str(i-1)+&#39;.jpg&#39;, img_resul)</span>
+<span class="sd">  img1 = img2.copy()</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+<p><strong>despliega_una_imagen_y_corta.py</strong></p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.image</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpimg</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">despliega_img</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+  <span class="n">i1</span> <span class="o">=</span> <span class="mi">400</span>
+  <span class="n">i2</span> <span class="o">=</span> <span class="mi">700</span>
+  <span class="n">j1</span> <span class="o">=</span> <span class="mi">700</span>
+  <span class="n">j2</span> <span class="o">=</span> <span class="mi">1200</span>
+
+  <span class="n">ii1</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">ii2</span> <span class="o">=</span> <span class="mi">50</span>
+  <span class="n">jj1</span> <span class="o">=</span> <span class="mi">200</span>
+  <span class="n">jj2</span> <span class="o">=</span> <span class="mi">500</span>
+
+  <span class="n">imgB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">i2</span><span class="o">-</span><span class="n">i1</span><span class="o">+</span><span class="n">ii2</span><span class="o">-</span><span class="n">ii1</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">j2</span><span class="o">-</span><span class="n">j1</span><span class="o">+</span><span class="n">jj2</span><span class="o">-</span><span class="n">jj1</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span>
+
+  <span class="n">img1</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">ii1</span><span class="p">:</span><span class="n">ii2</span><span class="p">,</span> <span class="n">jj1</span><span class="p">:</span><span class="n">jj2</span><span class="p">]</span>
+  <span class="n">img2</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">i1</span><span class="p">:</span><span class="n">i2</span><span class="p">,</span> <span class="n">j1</span><span class="p">:</span><span class="n">j2</span><span class="p">]</span>
+
+  <span class="n">imgB</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="n">ii2</span><span class="o">-</span><span class="n">ii1</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">:(</span><span class="n">jj2</span><span class="o">-</span><span class="n">jj1</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">img1</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
+  <span class="n">imgB</span><span class="p">[(</span><span class="n">ii2</span><span class="o">-</span><span class="n">ii1</span><span class="o">+</span><span class="mi">2</span><span class="p">):(</span><span class="n">ii2</span><span class="o">-</span><span class="n">ii1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i2</span><span class="o">-</span><span class="n">i1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">jj2</span><span class="o">-</span><span class="n">jj1</span><span class="o">+</span><span class="mi">2</span><span class="p">):(</span><span class="n">jj2</span><span class="o">-</span><span class="n">jj1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">j2</span><span class="o">-</span><span class="n">j1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">img2</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">imgB</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
+  <span class="c1">#plt.axis(&quot;off&quot;)  # Oculta los ejes</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="c1">#  plt.show()</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;549 imagenes&#39;</span><span class="p">)</span>
+
+<span class="nb">min</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="mi">34</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tiempo inicial: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">seg</span><span class="p">))</span>
+
+<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;en que tiempo deseas ver la imagen [0 - para terminar] :&#39;</span><span class="p">)</span>
+
+  <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+  <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+      <span class="n">ns</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+      <span class="n">ns</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">ns</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;./imagenes/&quot;</span><span class="o">+</span> <span class="s2">&quot;output_00&quot;</span> <span class="o">+</span> <span class="n">ns</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span>
+
+    <span class="n">despliega_img</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+<p><strong>existe_diferencia_01.py</strong></p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageChops</span>
+
+<span class="n">pat</span> <span class="o">=</span> <span class="s1">&#39;temporal&#39;</span>
+<span class="n">file1</span> <span class="o">=</span> <span class="s1">&#39;output_0001.jpg&#39;</span>
+<span class="n">file2</span> <span class="o">=</span> <span class="s1">&#39;output_0001.jpg&#39;</span>
+
+
+<span class="c1"># Cargar las dos imágenes JPG</span>
+<span class="n">img1</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pat</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">file1</span><span class="p">)</span>
+<span class="n">img2</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pat</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">file2</span><span class="p">)</span>
+
+<span class="c1"># Calcular la diferencia absoluta entre los píxeles</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">ImageChops</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">)</span>
+
+<span class="c1"># Comprobar si hay diferencias</span>
+<span class="k">if</span> <span class="n">diff</span><span class="o">.</span><span class="n">getbbox</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Las imágenes son diferentes.&#39;</span><span class="p">)</span>
+    <span class="n">diff</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Muestra la imagen resultante con los cambios</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Las imágenes son exactamente iguales.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>funciones_imagenes.py</strong></p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.image</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpimg</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">corta_imagen</span><span class="p">(</span><span class="n">img</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">i1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">i2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">j1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">j2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39; hola como estas</span>
+<span class="sd">   yo estoy bien</span>
+<span class="sd">   --------------------------</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+
+  <span class="n">imgn</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">i1</span><span class="p">:</span><span class="n">i2</span><span class="p">,</span> <span class="n">j1</span><span class="p">:</span><span class="n">j2</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">imgn</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">ConvierteIMG_una</span><span class="p">(</span><span class="n">img</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+  <span class="n">imgn</span> <span class="o">=</span> <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">imgn</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">despliega_img</span><span class="p">(</span><span class="n">imgB</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="c1">#  plt.ion()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">imgB</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="c1">#  plt.title(ns)</span>
+  <span class="c1">#plt.axis(&quot;off&quot;)  # Oculta los ejes</span>
+<span class="c1">#  plt.ioff()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">LeeIMG_nombre</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">LeeIMG</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;549 imagenes&#39;</span><span class="p">)</span>
+  <span class="nb">min</span> <span class="o">=</span> <span class="mi">15</span>
+  <span class="n">seg</span> <span class="o">=</span> <span class="mi">34</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tiempo inicial MIN, SEG: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">min</span><span class="p">),</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">seg</span><span class="p">))</span>
+
+  <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+  <span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;./imagenes/&quot;</span><span class="o">+</span> <span class="s2">&quot;output_00&quot;</span> <span class="o">+</span> <span class="n">ns</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">img</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">LeeIMG_corta</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">LeeIMG</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">corta_imagen</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">img</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">Une_2_imagenes_Vertical</span><span class="p">(</span><span class="n">img1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">img2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+  <span class="n">ss1</span> <span class="o">=</span> <span class="n">img1</span><span class="o">.</span><span class="n">shape</span>
+  <span class="n">ss2</span> <span class="o">=</span> <span class="n">img2</span><span class="o">.</span><span class="n">shape</span>
+
+  <span class="n">ny</span> <span class="o">=</span> <span class="n">ss1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+  <span class="k">if</span> <span class="n">ny</span> <span class="o">&lt;</span> <span class="n">ss2</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">ny</span> <span class="o">=</span> <span class="n">ss2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+  <span class="n">nx</span> <span class="o">=</span> <span class="n">ss1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">ss2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+  <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">))</span>
+
+  <span class="n">img</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="n">ss1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img1</span>
+  <span class="n">img</span><span class="p">[(</span><span class="n">ss1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">):(</span><span class="n">ss2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">img2</span>
+
+  <span class="k">return</span> <span class="n">img</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pylab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+
+<span class="n">pat</span> <span class="o">=</span> <span class="s1">&#39;../Hiram_datos/IMG_1952&#39;</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;fotograma_0&#39;</span>
+
+<span class="n">ni</span> <span class="o">=</span> <span class="mi">507</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">i1</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">i2</span> <span class="o">=</span> <span class="mi">840</span>
+<span class="n">j1</span> <span class="o">=</span> <span class="mi">310</span>
+<span class="n">j2</span> <span class="o">=</span> <span class="mi">1900</span>
+
+<span class="n">filo</span> <span class="o">=</span> <span class="s1">&#39;imgo_&#39;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">390</span><span class="p">,</span><span class="n">ni</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+      <span class="n">ss</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+      <span class="n">ss</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">ss</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ff</span> <span class="o">=</span> <span class="n">pat</span><span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">file</span><span class="o">+</span> <span class="n">ss</span> <span class="o">+</span><span class="s1">&#39;.png&#39;</span>
+    <span class="n">im</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">ff</span><span class="p">)</span>
+    <span class="n">im</span><span class="p">[</span><span class="n">i1</span><span class="p">:(</span><span class="n">i1</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="p">:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">im</span><span class="p">[</span><span class="n">i2</span><span class="p">:(</span><span class="n">i2</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="p">:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">im</span><span class="p">[:,</span> <span class="n">j1</span><span class="p">:(</span><span class="n">j1</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">im</span><span class="p">[:,</span> <span class="n">j2</span><span class="p">:(</span><span class="n">j2</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+        <span class="n">imgn</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="n">i1</span><span class="p">:</span><span class="n">i2</span><span class="p">,</span> <span class="n">j1</span><span class="p">:</span><span class="n">j2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">&#39;ddddd&#39;</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> <span class="n">imgn</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">.1</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>lee_image_corta_salva.py</strong></p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># importing required libraries</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.image</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">img</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">lee_img_corta_salva</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">fileout</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">i1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">i2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">j1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">j2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+  <span class="n">testImage</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+  <span class="n">im</span> <span class="o">=</span> <span class="n">testImage</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+  <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="n">i1</span><span class="p">:</span><span class="n">i2</span><span class="p">,</span> <span class="n">j1</span><span class="p">:</span><span class="n">j2</span><span class="p">]</span>
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span><span class="n">fileout</span> <span class="o">+</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
+
+
+<span class="n">pat</span> <span class="o">=</span> <span class="s1">&#39;../Hiram_datos/IMG_1952&#39;</span>
+
+<span class="n">i1</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">i2</span> <span class="o">=</span> <span class="mi">840</span>
+<span class="n">j1</span> <span class="o">=</span> <span class="mi">310</span>
+<span class="n">j2</span> <span class="o">=</span> <span class="mi">1900</span>
+
+<span class="n">ni</span> <span class="o">=</span> <span class="mi">473</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;fotograma_0&#39;</span>
+<span class="n">filo</span> <span class="o">=</span> <span class="s1">&#39;xxxx_&#39;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">390</span><span class="p">,</span><span class="n">ni</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+      <span class="n">ss</span> <span class="o">=</span> <span class="s1">&#39;00&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+      <span class="n">ss</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">ss</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ff</span> <span class="o">=</span> <span class="n">pat</span><span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">file</span><span class="o">+</span> <span class="n">ss</span> <span class="o">+</span><span class="s1">&#39;.png&#39;</span>
+    <span class="n">fileo</span> <span class="o">=</span> <span class="n">filo</span> <span class="o">+</span> <span class="n">ss</span>
+    <span class="n">lee_img_corta_salva</span><span class="p">(</span><span class="n">ff</span><span class="p">,</span> <span class="n">fileo</span><span class="p">,</span> <span class="n">i1</span><span class="p">,</span> <span class="n">i2</span><span class="p">,</span> <span class="n">j1</span><span class="p">,</span> <span class="n">j2</span><span class="p">)</span>
+
+
+<span class="c1"># displaying the image</span>
+<span class="c1">#plt.imshow(img)</span>
+
+<span class="c1">#plt.show()</span>
+</pre></div>
+</div>
+<p><strong>porcentaje_de_similitud.py</strong></p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">structural_similarity</span> <span class="k">as</span> <span class="n">ssim</span>
+
+<span class="c1"># 1. Cargar las imágenes en escala de grises (SSIM lo requiere así)</span>
+
+<span class="n">pat</span> <span class="o">=</span> <span class="s1">&#39;temporal&#39;</span>
+<span class="n">file1</span> <span class="o">=</span> <span class="s1">&#39;output_0001.jpg&#39;</span>
+<span class="n">file2</span> <span class="o">=</span> <span class="s1">&#39;output_0002.jpg&#39;</span>
+
+<span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">pat</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span>  <span class="n">file1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+<span class="n">img2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">pat</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span>  <span class="n">file1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+
+<span class="c1"># NOTA: Ambas imágenes deben tener exactamente las mismas dimensiones (Ancho x Alto)</span>
+<span class="k">if</span> <span class="n">img1</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">img2</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+    <span class="c1"># Si no miden lo mismo, redimensionamos la segunda imagen al tamaño de la primera</span>
+    <span class="n">img2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="p">(</span><span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1"># 2. Calcular SSIM (el argumento &#39;full=True&#39; nos devuelve la imagen con las diferencias)</span>
+<span class="n">score</span><span class="p">,</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">ssim</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># El score va de -1 a 1, donde 1 significa que son idénticas</span>
+<span class="n">porcentaje_similitud</span> <span class="o">=</span> <span class="n">score</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Similitud entre imágenes: </span><span class="si">{</span><span class="n">porcentaje_similitud</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. Procesar la imagen de diferencia para resaltar los cambios</span>
+<span class="c1"># &#39;diff&#39; está en formato float de 0 a 1; lo convertimos a un rango de 0 a 255 (entero)</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">diff</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+
+<span class="c1"># Aplicamos un umbral (threshold) para obtener una máscara blanca donde hay cambios</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">thresh</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY_INV</span> <span class="o">|</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_OTSU</span><span class="p">)</span>
+
+<span class="c1"># Encontrar los contornos de las zonas que cambiaron</span>
+<span class="n">contornos</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">thresh</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
+
+<span class="c1"># Cargar la imagen original a color para dibujar sobre ella los recuadros de diferencias</span>
+<span class="n">img1_color</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">pat</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span>  <span class="n">file1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">contornos</span><span class="p">:</span>
+    <span class="c1"># Filtrar ruidos pequeños (solo dibujar cajas si el área del cambio es significativa)</span>
+    <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">contourArea</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">boundingRect</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="c1"># Dibujar un rectángulo rojo alrededor de la diferencia</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img1_color</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># 4. Mostrar los resultados visualmente</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Similitud: </span><span class="si">{</span><span class="n">porcentaje_similitud</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img1_color</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Zonas con Cambios&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>porcentaje_de_similitud_2.py</strong></p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">structural_similarity</span> <span class="k">as</span> <span class="n">ssim</span>
+
+<span class="c1"># 1. Cargar las imágenes en escala de grises (SSIM lo requiere así)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">similitud</span><span class="p">(</span><span class="n">file1</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">file2</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+  <span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">pat</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span>  <span class="n">file1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+  <span class="n">img2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">pat</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span>  <span class="n">file2</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+
+  <span class="c1"># NOTA: Ambas imágenes deben tener exactamente las mismas dimensiones (Ancho x Alto)</span>
+  <span class="k">if</span> <span class="n">img1</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">img2</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+    <span class="c1"># Si no miden lo mismo, redimensionamos la segunda imagen al tamaño de la primera</span>
+    <span class="n">img2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="p">(</span><span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">img1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+  <span class="c1"># 2. Calcular SSIM (el argumento &#39;full=True&#39; nos devuelve la imagen con las diferencias)</span>
+  <span class="n">score</span><span class="p">,</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">ssim</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+  <span class="c1"># El score va de -1 a 1, donde 1 significa que son idénticas</span>
+  <span class="n">porcentaje_similitud</span> <span class="o">=</span> <span class="n">score</span> <span class="o">*</span> <span class="mi">100</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Similitud entre imágenes: </span><span class="si">{</span><span class="n">porcentaje_similitud</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">diff</span>
+
+<span class="n">pat</span> <span class="o">=</span> <span class="s1">&#39;temporal&#39;</span>
+<span class="n">file1</span> <span class="o">=</span> <span class="s1">&#39;output_0001.jpg&#39;</span>
+<span class="n">file2</span> <span class="o">=</span> <span class="s1">&#39;output_0002.jpg&#39;</span>
+
+<span class="n">dd</span> <span class="o">=</span> <span class="n">similitud</span><span class="p">(</span><span class="n">file1</span><span class="p">,</span> <span class="n">file2</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">Grafica_diferencias</span><span class="p">(</span><span class="n">diff</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+  <span class="c1"># 3. Procesar la imagen de diferencia para resaltar los cambios</span>
+  <span class="c1"># &#39;diff&#39; está en formato float de 0 a 1; lo convertimos a un rango de 0 a 255 (entero)</span>
+  <span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">diff</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+
+  <span class="c1"># Aplicamos un umbral (threshold) para obtener una máscara blanca donde hay cambios</span>
+  <span class="n">_</span><span class="p">,</span> <span class="n">thresh</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY_INV</span> <span class="o">|</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_OTSU</span><span class="p">)</span>
+
+  <span class="c1"># Encontrar los contornos de las zonas que cambiaron</span>
+  <span class="n">contornos</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">thresh</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
+
+  <span class="c1"># Cargar la imagen original a color para dibujar sobre ella los recuadros de diferencias</span>
+  <span class="n">img1_color</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">pat</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span>  <span class="n">file1</span><span class="p">)</span>
+
+  <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">contornos</span><span class="p">:</span>
+    <span class="c1"># Filtrar ruidos pequeños (solo dibujar cajas si el área del cambio es significativa)</span>
+    <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">contourArea</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">boundingRect</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="c1"># Dibujar un rectángulo rojo alrededor de la diferencia</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img1_color</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+
+  <span class="c1"># 4. Mostrar los resultados visualmente</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1">#  plt.title(f&quot;Similitud: {porcentaje_similitud:.2f}%&quot;)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img1_color</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">))</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Zonas con Cambios&quot;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">Grafica_diferencias</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 
 
