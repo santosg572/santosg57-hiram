@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="sp" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; документација Hiram 01</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=cb95fe6c"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Индекс" href="genindex.html" />
+    <link rel="search" title="Претрага" href="search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="recorta_el_recuadro_de_un_video.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <p>Cuando YOLO (You Only Look Once) parece no procesar todos los fotogramas (frames) de un video o una transmisión, generalmente
+se debe a un cuello de botella entre la lectura del archivo/stream y la velocidad de inferencia del modelo, o a la forma en
+que está escrito el código en Python (usando OpenCV).</p>
+<p>Las causas más comunes y sus soluciones son:</p>
+<ol class="arabic simple">
+<li><p>El modelo es más lento que los FPS del video (Procesamiento secuencial lento)</p></li>
+</ol>
+<ul class="simple">
+<li><p>El problema: Si tu video está grabado a 30 o 60 FPS, pero tu CPU/GPU tarda, por ejemplo, 50 milisegundos en hacer la</p></li>
+</ul>
+<p>inferencia de cada frame (lo que equivale a 20 FPS), el script no podrá procesar cada imagen en tiempo real si va leyendo
+frame por frame de forma síncrona.</p>
+<ul>
+<li><p>La solución:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Usa la GPU: Asegúrate de que YOLO esté ejecutándose en la GPU (device=0 en PyTorch) en lugar del CPU.</p></li>
+<li><p>Optimiza el modelo: Exporta tu modelo a formatos optimizados como TensorRT (si usas NVIDIA) o OpenVINO (si usas</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Intel) para multiplicar la velocidad de inferencia.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Reduce la resolución: Pasar imágenes a 4K o 1080p nativo satura el preprocesamiento; redimensiona o usa</p></li>
+</ul>
+</div></blockquote>
+<p>resoluciones estándar como 640x640 o HD (1280x720).</p>
+<ol class="arabic simple" start="2">
+<li><p>Cuello de botella con cv2.VideoCapture y lectura síncrona</p></li>
+</ol>
+<ul class="simple">
+<li><p>El problema: Al recorrer un video con un bucle while cap.isOpened(): y llamar a model(frame) o model.predict(frame) de</p></li>
+</ul>
+<p>forma lineal, el código espera a que termine la predicción antes de pedir el siguiente frame. Si usas streams en vivo (RTSP,
+HTTP o YouTube), el búfer de OpenCV puede descartar fotogramas si se llena.</p>
+<ul>
+<li><p>La solución:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Multihilos (Multi-threading): Separa la lectura de video en un hilo independiente (un hilo que solo se encargue de leer frames y meterlos en una cola/buffer) y otro hilo o proceso que tome los frames del buffer para pasárselos a YOLO.</p></li>
+<li><p>Revisa los repositorios oficiales de soporte de Ultralytics para ver ejemplos de manejo de flujos con hilos.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Procesamiento por lotes (Batch Processing)</p></li>
+</ol>
+<ul class="simple">
+<li><p>El problema: Procesar las imágenes de una en una desaprovecha la paralelización masiva que ofrecen las tarjetas gráficas.</p></li>
+<li><p>La solución: Si no necesitas ver el resultado en tiempo real instantáneo, puedes acumular un lote (batch) de varios frames  (por ejemplo, batch=16 o 32) y pasárselos al modelo en una sola llamada.</p></li>
+</ul>
+<p>Puedes ver un video que explica cómo optimizar la velocidad de detección y evitar cuellos de botella con YOLO en Python:</p>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Hiram</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигација</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="help/matplotlib_image.html">matplotlib.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="help/cv2.html">cv2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programas/programas.html">programas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dame_un_programa_en_python_para_detectar_objetos_que_estan_en_un_movie.html">dame un programa en python para detectar objetos que estan en un movie</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="recorta_el_recuadro_de_un_video.html" title="претходна глава">&lt;no title&gt;</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Брза претрага</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Тражи" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/yolo_no_procesa_todos_los_frames_en_un_movie.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
