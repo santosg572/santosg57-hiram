@@ -18,4 +18,7 @@ documentation for details.
    help/matplotlib_image
    help/cv2
    programas/programas
+   dame_un_programa_en_python_para_detectar_objetos_que_estan_en_un_movie
+   cortar_la_pelicula_en_python
+   recorta_el_recuadro_de_un_video
 
