@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="sp" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; документација Hiram 01</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=cb95fe6c"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Индекс" href="genindex.html" />
+    <link rel="search" title="Претрага" href="search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="cortar_la_pelicula_en_python.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <blockquote>
+<div><p>recorta el recuadro de un video</p>
+</div></blockquote>
+<hr class="docutils" />
+<p>Para recortar el recuadro o los bordes negros (letterbox/pillarbox) de un video en Python, la herramienta más eficiente y
+utilizada es ffmpeg-python (o usar subprocess con FFmpeg de forma directa). También puedes hacerlo cuadro por cuadro con
+OpenCV, aunque es más lento para videos largos.</p>
+<p>Aquí tienes las dos mejores opciones según lo que necesites:</p>
+<p><strong>Opción 1: Usando FFmpeg (Recomendada - Rápida y sin pérdida de calidad)</strong></p>
+<p>Esta es la mejor opción porque no decodifica y vuelve a codificar todo el video de forma pesada, sino que aplica un filtro
+directo.</p>
+<p>Requisitos:</p>
+<p>Primero, instala la librería en tu terminal:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>ffmpeg-python
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ffmpeg</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">recortar_video</span><span class="p">(</span><span class="n">video_entrada</span><span class="p">,</span> <span class="n">video_salida</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    x, y: Coordenadas de la esquina superior izquierda del recuadro que quieres conservar.</span>
+<span class="sd">    ancho, alto: Dimensiones del recuadro que vas a recortar.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="p">(</span>
+        <span class="n">ffmpeg</span>
+        <span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">video_entrada</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">video_salida</span><span class="p">,</span> <span class="n">vcodec</span><span class="o">=</span><span class="s1">&#39;libx264&#39;</span><span class="p">,</span> <span class="n">acodec</span><span class="o">=</span><span class="s1">&#39;copy&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">overwrite_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1"># Ejemplo de uso: Recortar un recuadro de 1280x720 empezando desde la coordenada (100, 50)</span>
+<span class="n">recortar_video</span><span class="p">(</span><span class="s1">&#39;mi_pelicula.mp4&#39;</span><span class="p">,</span> <span class="s1">&#39;pelicula_recortada.mp4&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">ancho</span><span class="o">=</span><span class="mi">1280</span><span class="p">,</span> <span class="n">alto</span><span class="o">=</span><span class="mi">720</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Opción 2: Usando OpenCV (Ideal si quieres analizar o procesar los fotogramas)</strong></p>
+<p>Si necesitas procesar los cuadros uno a uno o automatizar el recorte detectando los bordes negros, OpenCV es una excelente
+opción.</p>
+<p>Requisitos:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>opencv-python
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+
+<span class="c1"># 1. Cargar el video</span>
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="s1">&#39;mi_pelicula.mp4&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Definir las coordenadas del recuadro a recortar [y_min:y_max, x_min:x_max]</span>
+<span class="c1"># Ajusta estos números a las dimensiones de tu video</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1280</span><span class="p">,</span> <span class="mi">720</span>
+
+<span class="c1"># 3. Configurar el archivo de salida</span>
+<span class="n">fps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FPS</span><span class="p">))</span>
+<span class="n">fourcc</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s1">&#39;mp4v&#39;</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="s1">&#39;pelicula_recortada.mp4&#39;</span><span class="p">,</span> <span class="n">fourcc</span><span class="p">,</span> <span class="n">fps</span><span class="p">,</span> <span class="p">(</span><span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">))</span>
+
+<span class="k">while</span> <span class="n">cap</span><span class="o">.</span><span class="n">isOpened</span><span class="p">():</span>
+    <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
+        <span class="k">break</span>
+
+    <span class="c1"># Recortar usando el indexado de matrices de NumPy [filas, columnas]</span>
+    <span class="n">recorte</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">alto</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">ancho</span><span class="p">]</span>
+
+    <span class="c1"># Guardar el cuadro recortado</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">recorte</span><span class="p">)</span>
+
+<span class="c1"># Liberar recursos</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+<span class="n">out</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¡Recorte finalizado con éxito!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>¿Cómo saber qué coordenadas (x, y, ancho, alto) usar?</strong></p>
+<p>Si no estás seguro de las dimensiones exactas, una forma rápida con FFmpeg en la terminal es usar su detector automático de
+bordes negros:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-i<span class="w"> </span>mi_pelicula.mp4<span class="w"> </span>-t<span class="w"> </span><span class="m">30</span><span class="w"> </span>-vf<span class="w"> </span>cropdetect<span class="w"> </span>-f<span class="w"> </span>null<span class="w"> </span>-
+</pre></div>
+</div>
+<p>Esto analizará los primeros 30 segundos y te arrojará en la consola una línea como: crop=1280:720:100:50 (que corresponde a
+ancho:alto:x:y).</p>
+<p>Si lo deseas, dime:</p>
+<ul class="simple">
+<li><p>¿Quieres eliminar bordes negros automáticos o recortar una zona específica (ej. una esquina)?</p></li>
+<li><p>¿Conoces las dimensiones actuales de tu video?</p></li>
+</ul>
+<p>Te puedo ayudar a programar un script que detecte y elimine las franjas negras automáticamente.</p>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Hiram</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигација</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="help/matplotlib_image.html">matplotlib.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="help/cv2.html">cv2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programas/programas.html">programas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dame_un_programa_en_python_para_detectar_objetos_que_estan_en_un_movie.html">dame un programa en python para detectar objetos que estan en un movie</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="cortar_la_pelicula_en_python.html" title="претходна глава">&lt;no title&gt;</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Брза претрага</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Тражи" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/recorta_el_recuadro_de_un_video.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
