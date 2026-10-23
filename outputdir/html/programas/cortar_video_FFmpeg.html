@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="sp" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>cortar_video_FFmpeg &#8212; документација Hiram 01</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=cb95fe6c"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Индекс" href="../genindex.html" />
+    <link rel="search" title="Претрага" href="../search.html" />
+    <link rel="next" title="crea_imagen_total" href="crea_imagen_total.html" />
+    <link rel="prev" title="cv2" href="../help/cv2.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="cortar-video-ffmpeg">
+<h1>cortar_video_FFmpeg<a class="headerlink" href="#cortar-video-ffmpeg" title="Link to this heading">¶</a></h1>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pati</span>
+
+<span class="n">filein</span> <span class="o">=</span> <span class="n">pati</span><span class="o">.</span><span class="n">File</span><span class="p">()</span>
+
+<span class="c1"># Comando de FFmpeg para recortar desde el minuto/segundo de inicio (-ss) con una duración (-t)</span>
+<span class="c1"># Ejemplo: cortar desde 00:01:00 (1 minuto) un fragmento de 30 segundos</span>
+<span class="n">comando</span> <span class="o">=</span> <span class="p">[</span>
+ <span class="s1">&#39;ffmpeg&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;-ss&#39;</span><span class="p">,</span> <span class="s1">&#39;00:00:13&#39;</span><span class="p">,</span>  <span class="c1"># Tiempo de inicio (HH:MM:SS o segundos)</span>
+ <span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="n">filein</span><span class="p">,</span> <span class="c1">#&#39;pelicula.mp4&#39;,  # Archivo de entrada</span>
+ <span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span>  <span class="c1"># Duración del clip en segundos</span>
+ <span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="s1">&#39;copy&#39;</span><span class="p">,</span>  <span class="c1"># Copiar streams sin recodificar (súper rápido)</span>
+ <span class="s1">&#39;pelicula_cortada.mp4&#39;</span>
+<span class="p">]</span>
+
+<span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">comando</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Hiram</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигација</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../help/matplotlib_image.html">matplotlib.image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help/cv2.html">cv2</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cortar_video_FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crea_imagen_total.html">crea_imagen_total</a></li>
+<li class="toctree-l1"><a class="reference internal" href="despliega_dos_imagen_y_corta_analiza.html">despliega_dos_imagen_y_corta_analiza</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dame_un_programa_en_python_para_detectar_objetos_que_estan_en_un_movie.html">dame un programa en python para detectar objetos que estan en un movie</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../help/cv2.html" title="претходна глава">cv2</a></li>
+      <li>Next: <a href="crea_imagen_total.html" title="наредна глава">crea_imagen_total</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Брза претрага</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Тражи" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Leopoldo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/programas/cortar_video_FFmpeg.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

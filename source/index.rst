@@ -17,9 +17,13 @@ documentation for details.
 
    help/matplotlib_image
    help/cv2
-   programas/programas
-   dame_un_programa_en_python_para_detectar_objetos_que_estan_en_un_movie
-   cortar_la_pelicula_en_python
-   recorta_el_recuadro_de_un_video
-   yolo_no_procesa_todos_los_frames_en_un_movie.rst
+   programas/cortar_video_FFmpeg.rst
+   programas/crea_imagen_total.rst
+   programas/despliega_dos_imagen_y_corta_analiza.rst
+   programas/despliega_imagenes.rst
+   programas/despliega_serie_imagenes.rst
+   programas/despliega_una_imagen.rst
+   programas/despliega_una_imagen_y_corta.rst
+   programas/detectar_pelicula.rst
+   
 
