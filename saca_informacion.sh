@@ -6,7 +6,8 @@ file1="IMG_1952.MOV"
 
 file2="IMG_1958.MOV"
 
-ffprobe -i $pat/$file1
+ffprobe -i $1
+
 
 
 
