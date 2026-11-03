@@ -17,7 +17,7 @@ saca_puntos_diferencia_2_img <- function(ff=0, mat_dif=0){
       }
     }
   }
-  print(k)
+#  print(k)
   res = list(xx,yy)
 }
 
