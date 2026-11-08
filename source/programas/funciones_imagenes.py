@@ -28,20 +28,28 @@ def LeeIMG_nombre(file=''):
     return img
 
 def LeeIMG(n=0):
-  print('549 imagenes')
-  min = 15
-  seg = 34
-   
-  print('tiempo inicial MIN, SEG: ' + str(min), ' : ', str(seg))
+  '''
+  Lee una imagen donde:
+  
+  n - es el numero de archivos jpg que se va a leer
+      n puede tomar valores de 1 a 27452
+  |
+  '''
+
+  pat = '../../../temporal/'
 
   if n < 10:
-    ns = '00' + str(n+1)
+    ns = '0000' + str(n)
   elif n < 100:
-    ns = '0' + str(n+1)
+    ns = '000' + str(n)
+  elif n < 1000:
+    ns = '00' + str(n)
+  elif n < 10000:
+    ns = '0' + str(n)
   else:
     ns = str(n)
 
-  file = "./imagenes/"+ "output_00" + ns + '.jpg'
+  file = pat + "output_" + ns + '.jpg'
   print(file)
   img = mpimg.imread(file)
   return img[:,:,0].copy()
@@ -67,50 +75,5 @@ def Une_2_imagenes_Vertical(img1=0, img2=0):
   img[(ss1[0]+1+1):(ss2[0]+2), :] = img2
 
   return img
-
-
-import cv2
-import numpy as np
-import pylab as pl
-
-pat = '../Hiram_datos/IMG_1952'
-
-file = 'fotograma_0'
-
-ni = 507
-
-img = None
-
-i1 = 250
-i2 = 840
-j1 = 310
-j2 = 1900
-
-filo = 'imgo_'
-
-for i in range(390,ni):
-    print(i)
-    if i < 10:
-      ss = '00'+str(i)
-    elif i < 100:
-      ss = '0'+str(i)
-    else:
-      ss = str(i)
-    ff = pat+ '/' + file+ ss +'.png'
-    im=pl.imread(ff)
-    im[i1:(i1+2), :,0] = 0
-    im[i2:(i2+2), :,0] = 0
-    im[:, j1:(j1+2), 0] = 0
-    im[:, j2:(j2+2), 0] = 0
-
-    if img is None:
-        img = pl.imshow(im)
-        imgn = im[i1:i2, j1:j2,0]
-        cv2.imwrite('ddddd' + '.jpg', imgn)
-    else:
-        img.set_data(im)
-    pl.pause(.1)
-    pl.draw()
-
 
 
