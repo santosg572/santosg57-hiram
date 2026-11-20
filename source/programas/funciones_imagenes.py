@@ -2,6 +2,27 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
+def Filtro_Media(img=0):
+  ss = img.shape
+  imgn = np.zeros(ss)
+  for i in range(1,ss[0]-1):  
+    for j in range(1,ss[1]-1):
+      imgt = img[(i-1):(i+2), (j-1):(j+2)]
+      res = np.mean(imgt)
+      imgn[i,j] = res
+  return imgn
+
+def Filtro_Mediana(img=0):
+  ss = img.shape
+  imgn = np.zeros(ss)
+  for i in range(1,ss[0]-1):
+    for j in range(1,ss[1]-1):
+      	imgt = img[(i-1):(i+2), (j-1):(j+2)]
+      	res = np.median(imgt)
+      	imgn[i,j] = res
+  return imgn
+
+
 def corta_imagen(img=0, i1=0, i2=0, j1=0, j2=0):
   ''' hola como estas
    yo estoy bien
@@ -50,13 +71,13 @@ def LeeIMG(n=0):
     ns = str(n)
 
   file = pat + "output_" + ns + '.jpg'
-  print(file)
+#  print(file)
   img = mpimg.imread(file)
   return img[:,:,0].copy()
 
 def LeeIMG_corta(n):
   img = LeeIMG(n)
-  img = corta_imagen(400, 700, 700, 1200, img)
+  img = corta_imagen(img, 400, 700, 700, 1200)
   return img
 
 def Une_2_imagenes_Vertical(img1=0, img2=0):
